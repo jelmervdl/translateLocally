@@ -110,6 +110,8 @@ set(PROJECT_SOURCES
         src/ModelManager.h
         src/Network.cpp
         src/Network.h
+        src/ServiceProvider.h
+        src/ServiceProvider.mm
         src/Settings.cpp
         src/Settings.h
         src/types.h
@@ -117,6 +119,9 @@ set(PROJECT_SOURCES
         ${TS_FILES}
 )
 
+set_source_files_properties(src/ServiceProvider.mm
+  PROPERTIES
+    COMPILE_FLAGS "-x objective-c++")
 
 # Set icon file for windows
 if(WIN32)
