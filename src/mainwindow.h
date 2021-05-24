@@ -35,7 +35,7 @@ public:
     Q_ENUM(Action);
 
 public slots:
-    
+    void setInputText(QString input);
 
 private slots:
     void on_inputBox_textChanged();

@@ -4,6 +4,7 @@
 #include <memory>
 #include <functional>
 #include "MarianInterface.h"
+#include "ServiceProvider.h"
 
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
@@ -125,6 +126,10 @@ MainWindow::MainWindow(QWidget *parent)
     // like it's only available in QtQuick and starting Qt6 in C++.
     // Note: both are safe when no model is set.
     resetTranslator();
+
+    // Attach macOS service provider
+    ServiceProvider *serviceProvider = new ServiceProvider(this);
+    connect(serviceProvider, &ServiceProvider::translationRequested, this, &MainWindow::setInputText);
 }
 
 MainWindow::~MainWindow() {
@@ -326,4 +331,8 @@ void MainWindow::on_actionSplit_Horizontally_triggered() {
 
 void MainWindow::on_actionSplit_Vertically_triggered() {
     settings_.splitOrientation.setValue(Qt::Vertical);
+}
+
+void MainWindow::setInputText(QString input) {
+    ui_->inputBox->setPlainText(input);
 }
