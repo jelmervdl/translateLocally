@@ -230,6 +230,9 @@ if(APPLE) # Apple specific installation of the app
   # When on MacOS, we have a non-standard libarchive location because we get it via brew
   target_include_directories(translateLocally-bin PRIVATE ${LibArchive_INCLUDE_DIR})
   target_include_directories(translateLocally PRIVATE ${LibArchive_INCLUDE_DIR})
+
+  set_target_properties(translateLocally PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/dist/Info.plist.in)
+  set_target_properties(translateLocally PROPERTIES MACOSX_BUNDLE_GUI_IDENTIFIER "com.translatelocally.translateLocally")
   # produce .dmg
   include(macdeployqt)
   macdeployqt(translateLocally)
