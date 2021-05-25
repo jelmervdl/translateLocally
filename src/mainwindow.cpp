@@ -4,7 +4,9 @@
 #include <memory>
 #include <functional>
 #include "MarianInterface.h"
+#ifdef __APPLE__
 #include "ServiceProvider.h"
+#endif
 
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
@@ -127,9 +129,11 @@ MainWindow::MainWindow(QWidget *parent)
     // Note: both are safe when no model is set.
     resetTranslator();
 
-    // Attach macOS service provider
+#ifdef __APPLE__
+    // Attach macOS service provider (free through QObject parenthood)
     ServiceProvider *serviceProvider = new ServiceProvider(this);
     connect(serviceProvider, &ServiceProvider::translationRequested, this, &MainWindow::setInputText);
+#endif
 }
 
 MainWindow::~MainWindow() {
