@@ -335,4 +335,6 @@ void MainWindow::on_actionSplit_Vertically_triggered() {
 
 void MainWindow::setInputText(QString input) {
     ui_->inputBox->setPlainText(input);
+    show(); // Make sure we're visible
+    activateWindow(); // Grab the attention
 }
