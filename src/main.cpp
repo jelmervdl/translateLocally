@@ -4,6 +4,10 @@
 #include <QApplication>
 #include <QCommandLineParser>
 
+#ifdef __APPLE__
+void mac_patchPlaceholderColor();
+#endif
+
 int main(int argc, char *argv[])
 {
     // Set marian to throw exceptions instead of std::abort()
@@ -12,6 +16,10 @@ int main(int argc, char *argv[])
     QApplication translateLocally(argc, argv);
     QCoreApplication::setApplicationName("translateLocally");
     QCoreApplication::setApplicationVersion("0.02");
+
+#ifdef __APPLE__
+    mac_patchPlaceholderColor();
+#endif
 
     // Command line parsing
     QCommandLineParser parser;

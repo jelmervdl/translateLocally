@@ -118,6 +118,14 @@ set(PROJECT_SOURCES
         ${TS_FILES}
 )
 
+if(APPLE)
+  list(APPEND PROJECT_SOURCES
+    src/PlatformSpecific_mac.mm)
+  set_source_files_properties(src/PlatformSpecific_mac.mm
+    PROPERTIES
+      COMPILE_FLAGS "-x objective-c++")
+endif(APPLE)
+
 
 # Set icon file for windows
 if(WIN32)
