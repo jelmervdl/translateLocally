@@ -74,6 +74,12 @@ jobs:
       run: |
           mv translateLocally.dmg translateLocally.`../dist/cpu_feature.sh`.dmg
           ls *.dmg
+    
+    - name: Upload .dmg file as build artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: "Development build"
+        path: ${{github.workspace}}/build/*.dmg
 
     #- uses: "marvinpinto/action-automatic-releases@latest"
     #  with:
